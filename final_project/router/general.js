@@ -26,9 +26,6 @@ public_users.post("/register", (req,res) => {
   else if(!username || !password){
     return res.status(400).json({message:"Recheck username and password"})
   }  
-
-
-  //return res.status(300).json({message: "Yet to be implemented"});
 });
 
 function getBookList() {
@@ -48,8 +45,6 @@ public_users.get('/',function (req, res) {
     return res.status(500).json({ message: "Error fetching book list" });
   });
 
-  //res.send(JSON.stringify(books, null, 4));
-  //return res.status(300).json({message: "Yet to be implemented"});
 });
 
 // Get book details based on ISBN
@@ -77,10 +72,6 @@ public_users.get('/isbn/:isbn',function (req, res) {
     .catch((error) => {
       return res.status(error.status || 404).json({ message: error.message });
     });
-  
-  //const ISBN = req.params.isbn;
-  //res.send(books[ISBN]);
-  //return res.status(300).json({message: "Yet to be implemented"});
  });
   
 // Get book details based on author
@@ -108,7 +99,6 @@ function getByAuthor(author) {
 
 
 public_users.get('/author/:author',function (req, res) {
-  //Write your code here
   const author = req.params.author;
   
   getByAuthor(author)
@@ -118,17 +108,6 @@ public_users.get('/author/:author',function (req, res) {
     .catch((error) => {
       return res.status(error.status || 404).json({ message: error.message });
     });
-
-   //let new_books = {}
-   //const new_author = req.params.author;
-   //let i=1;
-   //for(let bookid in books){
-     //if(books[bookid].author === new_author ){
-      // new_books[i++] = books[bookid];
-     //}
-    //}
-    //res.send(JSON.stringify(new_books))
-  //return res.status(300).json({message: "Yet to be implemented"});
 });
 
 // Get all books based on title
@@ -152,10 +131,8 @@ function getByTitle(title) {
     });
   }
 
-  
+
   public_users.get('/title/:title', async function (req, res) {
-
-
     const title = req.params.title;
   
     try {
@@ -164,26 +141,13 @@ function getByTitle(title) {
     } catch (error) {
       return res.status(error.status || 404).json({ message: error.message });
     }
-
-  //Write your code here
-   //let new_books = {}
-   //const new_title = req.params.title;
-   //let i=1;
-   //for(let bookid in books){
-    // if(books[bookid].title === new_title ){
-    //   new_books[i++] = books[bookid];
-    // }
-    //}
-    //res.send(JSON.stringify(new_books))
-  //return res.status(300).json({message: "Yet to be implemented"});
 });
+
 
 //  Get book review
 public_users.get('/review/:isbn',function (req, res) {
-  //Write your code here
   const isbn = req.params.isbn;
   res.send(JSON.stringify(books[isbn].review),null,4);
-  //return res.status(300).json({message: "Yet to be implemented"});
 });
 
 module.exports.general = public_users;
